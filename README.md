@@ -54,10 +54,6 @@ You can directly call a particular template as per the requirement. for example:
         reportDirectory: '${{ parameters.reportDirectory }}' 
         additionalCodeCoverageFiles: '${{ parameters.additionalCodeCoverageFiles }}' 
         failIfCoverageEmpty: '${{ parameters.failIfCoverageEmpty }}'                
-  
-
-        
-  
-Make sure to adjust the repository name, branch name, and parameter values according to your project's requirements.
 
   ```
+Make sure to adjust the repository name, branch name, and parameter values according to your project's requirements.
