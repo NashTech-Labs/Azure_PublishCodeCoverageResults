@@ -1,0 +1,48 @@
+parameters:
+- name: codeCoverageTool
+  type: string
+  default: 'Cobertura'
+
+- name: summaryFileLocation
+  type: string
+  default: "**/coverage.cobertura.xml"
+
+- name: pathToSources
+  type: string
+  default: ''
+
+- name: reportDirectory
+  type: string
+  default: ''
+
+- name: additionalCodeCoverageFiles
+  type: string
+  default: ''
+  
+- name: failIfCoverageEmpty
+  type: string
+  default: false
+  
+steps:
+- ${{ if eq( parameters.codeCoverageTool, 'JaCoCo') }}:
+  - task: PublishCodeCoverageResults@1
+    displayName: "Publish code coverage results using ${{ parameters.codeCoverageTool }}"
+    inputs:
+      codeCoverageTool: '${{ parameters.codeCoverageTool }}'
+      summaryFileLocation: '${{ parameters.summaryFileLocation}}' 
+      pathToSources: '${{ parameters.pathToSources }}'
+      reportDirectory: '${{ parameters.reportDirectory }}' 
+      additionalCodeCoverageFiles: '${{ parameters.additionalCodeCoverageFiles }}' 
+      failIfCoverageEmpty: '${{ parameters.failIfCoverageEmpty }}'
+      
+- ${{ elseif eq( parameters.codeCoverageTool, 'Cobertura') }}:
+  - task: PublishCodeCoverageResults@1
+    displayName: "Publish code coverage results using ${{ parameters.codeCoverageTool }}"
+    inputs:
+      codeCoverageTool: '${{ parameters.codeCoverageTool }}'
+      summaryFileLocation: '${{ parameters.summaryFileLocation}}'
+      pathToSources: '${{ parameters.pathToSources }}'
+      reportDirectory: '${{ parameters.reportDirectory }}' 
+      additionalCodeCoverageFiles: '${{ parameters.additionalCodeCoverageFiles }}' 
+      failIfCoverageEmpty: '${{ parameters.failIfCoverageEmpty }}'
+      
